@@ -13,11 +13,14 @@ import java.util.List;
 @RequiredArgsConstructor  @CrossOrigin(origins = "*")
 public class CarroController {
     private final CarroService carroService;
+
     @GetMapping
-    public ResponseEntity<List<Carro>> listarTodos() {
+    public ResponseEntity<List<Carro>> listarTodos(@RequestHeader(value = "page", defaultValue = "0") String page, @RequestHeader(value = "size", defaultValue = "10") String size) {
+//        log.info("page: " + page + " size " + size);
         List<Carro> carros = carroService.listarTodos();
         return ResponseEntity.ok(carros);
     }
+
     @GetMapping("/{id}")
     public ResponseEntity<Carro> buscarPorId(@PathVariable Long id) {
         try {
