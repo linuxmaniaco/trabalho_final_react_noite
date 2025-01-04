@@ -6,6 +6,11 @@ INSERT INTO carro (modelo, ano, cor, cavalos_de_potencia, fabricante, pais) VALU
 ('Polo', 2019, 'Branco', 130, 'Volkswagen', 'Alemanha'),
 ('Passat', 2021, 'Prata', 180, 'Volkswagen', 'Alemanha'),
 ('Tiguan', 2022, 'Azul', 200, 'Volkswagen', 'Alemanha'),
+('Fusca', 1980, 'Preto', 150, 'Volkswagen', 'Alemanha'),
+('Fusca', 1980, 'Azul', 150, 'Volkswagen', 'Alemanha'),
+('Fusca', 1985, 'Amarelo', 150, 'Volkswagen', 'Alemanha'),
+('Fusca', 1985, 'Verde', 150, 'Volkswagen', 'Alemanha'),
+('Fusca', 1966, 'Vermelho', 150, 'Volkswagen', 'Alemanha'),
 
 -- Fabricante 2 (Ford)
 ('Fusion', 2021, 'Vermelho', 245, 'Ford', 'EUA'),

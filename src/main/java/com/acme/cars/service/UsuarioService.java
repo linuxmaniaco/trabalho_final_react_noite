@@ -25,6 +25,16 @@ public class UsuarioService {
         return usuarioRepository.findAll(PageRequest.of(page, size)).stream().toList();
     }
 
+    public Optional<Usuario> findById(Long id) {
+        Optional<Usuario> byId = usuarioRepository.findById(id);
+        if(byId.isPresent()){
+            Usuario usuario = byId.get();
+            usuario.setPassword(null);
+            return Optional.of(usuario);
+        }
+        return byId;
+    }
+
     public Usuario salvar(Usuario usuario) {
         return usuarioRepository.save(usuario);
     }

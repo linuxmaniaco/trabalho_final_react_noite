@@ -6,7 +6,9 @@ import com.acme.cars.exception.RecursoNaoEncontradoException;
 import com.acme.cars.model.Usuario;
 import com.acme.cars.payload.AuthPayload;
 import com.acme.cars.service.SecurityService;
+import com.acme.cars.service.TokenService;
 import com.acme.cars.service.UsuarioService;
+import com.auth0.jwt.exceptions.SignatureVerificationException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/usuarios")
@@ -25,10 +28,11 @@ import java.util.Map;
 public class UsuarioController {
     private final UsuarioService usuarioService;
     private final SecurityService securityService;
+    private final TokenService tokenService;
 
 
     @GetMapping
-    public ResponseEntity<List<Usuario>> getAllUsuario(@RequestHeader(value = "page", defaultValue = "0") String page, @RequestHeader(value = "size", defaultValue = "30") String size) {
+    public ResponseEntity<List<Usuario>> getAllUsuario(@RequestHeader(value = "page", defaultValue = "0") String page, @RequestHeader(value = "size", defaultValue = "9999") String size) {
         log.info("page: " + page + " size: " + size);
         HttpHeaders headers = new HttpHeaders();
         headers.add("Total-Count", String.valueOf(usuarioService.count()));
@@ -72,6 +76,19 @@ public class UsuarioController {
         } catch (RecursoNaoEncontradoException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
+    }
+
+    @GetMapping("/my-profile")
+    public ResponseEntity<?> getMyProfile(
+            @RequestHeader(value = "authorization", required = true) String token) {
+        try{
+            String usuario = tokenService.getUsuario(tokenService.isValid(token));
+            Optional<Usuario> byId = usuarioService.findById(Long.valueOf(usuario));
+            return byId.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+        }catch (SignatureVerificationException ex){
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(Map.of("message", "Not Autorized"));
+        }
+
     }
 
 }
