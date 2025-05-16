@@ -155,7 +155,7 @@ INSERT INTO carro (modelo, ano, cor, cavalos_de_potencia, fabricante, pais) VALU
 
 INSERT INTO usuario (nome, cargo, email, avatar, password) VALUES
                                                                ('Wile E. Coyote', 'Engenheiro de Produtos', 'wile@acme.com', 'https://s3.amazonaws.com/comicgeeks/characters/avatars/10927.jpg', 'senha123'),
-                                                               ('Road Runner', 'Testador de Produtos', 'roadrunner@acme.com', 'https://pa1.aminoapps.com/7235/7f28023b3169637b8d520f0e88bcf01cbb4e3baar1-266-234_00.gif', 'senha123'),
+                                                               ('Road Runner', 'Testador de Produtos', 'roadrunner@acme.com', 'https://i.pinimg.com/474x/52/89/a7/5289a705d3199d01da547c58c217a21d.jpg', 'senha123'),
                                                                ('Daffy Duck', 'Gerente de Marketing', 'daffy@acme.com', 'https://www.gravatar.com/avatar/daf4b5b81342fe587d5043b3e58a0180?s=200', 'senha123'),
                                                                ('Bugs Bunny', 'Diretor de TI', 'bugs@acme.com', 'https://www.gravatar.com/avatar/9f0c2cb2d5f8264e2c35d92f3655f2b3?s=200', 'senha123'),
                                                                ('Elmer Fudd', 'Analista de Suporte', 'elmer@acme.com', 'https://www.gravatar.com/avatar/6be1f3c98be3886b5473b7b947fe82ad?s=200', 'senha123');
